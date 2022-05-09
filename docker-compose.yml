@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  app:
+    image: 'allteran/fb-manager:v0.1'
+    container_name: fb-manager-app
+    ports:
+      - 8080:8080
+    links:
+      - db
+    environment:
+       SPRING_DATASOURCE_URL: jdbc:postgresql://db/fb_manager_db
+       SPRING_DATASOURCE_USERNAME: postgres
+       SPRING_DATASOURCE_PASSWORD: 123456789
+       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+  db:
+    image: 'postgres:13.1-alpine'
+    restart: always
+    container_name: db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pgdata
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789
+      POSTGRES_DB: fb_manager_db
+      PGDATA: /var/lib/postgresql/data/pgdata
