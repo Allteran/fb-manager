@@ -1,7 +1,7 @@
 package io.allteran.fbmanager.exception;
 
-public class FinanceException extends RuntimeException{
-    public FinanceException(String message) {
+public class CustomException extends RuntimeException{
+    public CustomException(String message) {
         super(message);
     }
 }
